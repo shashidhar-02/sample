@@ -36,7 +36,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
-  color-scheme: dark; /* Forces default inputs (like date/time) to look good in dark mode */
+  color-scheme: dark;
 }
 
 body {
@@ -287,7 +287,7 @@ p {
   align-items: center;
   gap: 12px;
   position: relative;
-  z-index: 60; /* Keep above mobile menu */
+  z-index: 60;
 }
 
 .mark {
@@ -354,7 +354,6 @@ p {
   background: rgba(255,255,255,0.1);
 }
 
-/* Upgraded Mobile Drawer */
 .navlinks {
   position: fixed;
   top: 0;
@@ -392,7 +391,6 @@ p {
   border-color: var(--gold);
 }
 
-/* Desktop Nav overrides */
 @media(min-width: 900px) {
   .navlinks {
     position: static;
@@ -822,7 +820,7 @@ p {
   border-radius: 28px;
   padding: 36px;
   box-shadow: 0 24px 48px rgba(0,0,0,0.2);
-  color: #f8f3ea;
+  color: #f8f3ea; 
 }
 
 .fields {
@@ -954,37 +952,6 @@ p {
 @media(max-width: 860px) {
   .visit { grid-template-columns: 1fr; }
 }
-
-.value-grid {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-
-.value-card {
-  padding: 24px;
-  border-top: 1px solid var(--line);
-  transition: 0.3s;
-}
-
-.value-card:hover {
-  background: rgba(255,255,255,0.02);
-  border-radius: 16px;
-  border-top-color: var(--gold);
-}
-
-.value-card b {
-  font-family: var(--display);
-  font-size: 26px;
-}
-
-.value-card p {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-@media(max-width: 800px) { .value-grid { grid-template-columns: 1fr 1fr; } }
-@media(max-width: 500px) { .value-grid { grid-template-columns: 1fr; } }
 
 .final {
   position: relative;
@@ -1265,73 +1232,11 @@ footer {
   line-height: 1.4;
 }
 
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  padding: 36px;
-  box-shadow: 0 24px 48px rgba(0,0,0,0.2);
-  color: #f8f3ea; /* Ensure text is visible on the dark panel background */
-}
-
-.field input, .field select, .field textarea {
-  width: 100%;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 12px;
-  padding: 14px 16px;
-  color: #fff;
-  transition: 0.3s;
-}
-
-.field select option {
-  background: var(--surface);
-  color: #fff;
-}
-
-.chat-tooltip {
-  position: fixed;
-  right: 20px;
-  bottom: 165px;
-  background: var(--surface);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 16px;
-  border: 1px solid var(--gold);
-  font-size: 13px;
-  font-weight: 500;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-  z-index: 68;
-  animation: floatTooltip 3s ease-in-out infinite;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-
-.chat-tooltip::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  right: 24px;
-  width: 12px;
-  height: 12px;
-  background: var(--surface);
-  border-right: 1px solid var(--gold);
-  border-bottom: 1px solid var(--gold);
-  transform: rotate(45deg);
-}
-
-.chat-tooltip.hide {
-  opacity: 0;
-}
-
-@keyframes floatTooltip {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-@media(min-width: 900px) { 
-  .chat-fab { bottom: 30px; } 
-  .chat-tooltip { bottom: 105px; }
+.bot {
+  align-self: flex-start;
+  background: #272019;
+  color: #ddd;
+  border-bottom-left-radius: 4px;
 }
 
 .me {
@@ -1426,7 +1331,6 @@ footer {
 }
 .lb-close:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
-/* Custom Toast Notification styles */
 .toast-container {
   position: fixed;
   bottom: 24px;
@@ -1797,7 +1701,6 @@ const REVIEWS = [
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 
-// Custom Toast notification to replace ugly alerts
 function showToast(message, type = "success") {
     const container = $("#toastContainer");
     const toast = document.createElement("div");
@@ -1806,13 +1709,10 @@ function showToast(message, type = "success") {
     
     container.appendChild(toast);
     
-    // Trigger animation
     setTimeout(() => toast.classList.add("show"), 10);
-    
-    // Remove after 3.5 seconds
     setTimeout(() => {
         toast.classList.remove("show");
-        setTimeout(() => toast.remove(), 400); // Wait for transition
+        setTimeout(() => toast.remove(), 400);
     }, 3500);
 }
 
@@ -1954,7 +1854,6 @@ function renderReviews(){
 }
 
 function bindActions(){
-  // Global Click Delegation
   document.addEventListener("click", e => {
     const wa = e.target.closest("[data-wa]");
     if (wa) { e.preventDefault(); openWaSheet(wa.dataset.wa); return; }
@@ -1976,46 +1875,34 @@ function bindActions(){
     if (intent) { chatReply(intent.dataset.intent); return; }
   });
 
-  // Lightbox close
   $("#lbClose").onclick = () => $("#lightbox").classList.remove("show");
   $("#lightbox").onclick = e => { if (e.target.id === "lightbox") $("#lightbox").classList.remove("show") };
 
-  // Improved Mobile Menu Drawer Logic
   const navLinks = $("#navLinks");
   $("#mobileMenuBtn").onclick = () => navLinks.classList.toggle("open");
-  // Close menu when clicking a link
   $$(".nav-item").forEach(link => {
       link.addEventListener("click", () => navLinks.classList.remove("open"));
   });
 
-  // Reservation Form Logic (Replaced alert with Toast)
   $("#reserveForm").addEventListener("submit", e => {
     e.preventDefault();
     const phone = $("#rPhone").value.replace(/\D/g, "");
     
-    if ($("#rName").value.trim().length < 2) {
-        showToast("Please enter a valid name.", "error"); return;
-    }
-    if (phone.length < 10) {
-        showToast("Please enter a valid 10-digit phone number.", "error"); return;
-    }
-    if (!$("#rDate").value || !$("#rTime").value) {
-        showToast("Please select a date and time.", "error"); return;
-    }
+    if ($("#rName").value.trim().length < 2) { showToast("Please enter a valid name.", "error"); return; }
+    if (phone.length < 10) { showToast("Please enter a valid 10-digit phone number.", "error"); return; }
+    if (!$("#rDate").value || !$("#rTime").value) { showToast("Please select a date and time.", "error"); return; }
     
     const msg = `Hello, I found ${CONFIG.name} online. I would like to reserve a table.\n\nName: ${$("#rName").value}\nPhone: ${phone}\nDate: ${$("#rDate").value}\nTime: ${$("#rTime").value}\nGuests: ${$("#rGuests").value}\nOccasion: ${$("#rOcc").value}\nSpecial request: ${$("#rNotes").value || "None"}`;
     
     showToast("Opening WhatsApp to complete reservation...");
-    
     setTimeout(() => {
         window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
     }, 800);
   });
 
-  // Chat UI Actions
   $("#chatFab").onclick = () => { 
       $("#chat").classList.add("show"); 
-      $("#chatTooltip").classList.add("hide"); // Hide the tooltip when opened
+      $("#chatTooltip").classList.add("hide"); 
       if (!$("#chatBody").children.length) chatWelcome();
   }
   $("#chatClose").onclick = () => $("#chat").classList.remove("show");
@@ -2026,7 +1913,7 @@ function bindActions(){
       if (!q) return;
       addMsg(q, "me");
       $("#chatInput").value = "";
-      setTimeout(() => routeQuestion(q), 300); // slight delay for bot realism
+      setTimeout(() => routeQuestion(q), 300); 
   });
 }
 
@@ -2091,12 +1978,10 @@ function routeQuestion(q){
   }
 }
 
-// Navbar scroll effect
 window.addEventListener("scroll", () => {
     $("#navbar").classList.toggle("scrolled", window.scrollY > 30);
 }, {passive: true});
 
-// Scroll Reveal Animations
 const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
         if(e.isIntersecting) {
@@ -2110,7 +1995,7 @@ function observeReveals(){
     $$(".reveal").forEach(el => io.observe(el));
 }
 
-// Initial Boot Sequence
+// Boot
 applyConfig();
 renderSignatures();
 renderMenu();
