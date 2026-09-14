@@ -1435,7 +1435,7 @@ footer {
       <a href="#visit" class="nav-item">Visit</a>
     </nav>
     <div class="nav-actions">
-      <a class="nav-phone" id="navPhone" href="#">+91 86884 2968</a>
+      <a class="nav-phone" id="navPhone" href="javascript:void(0)">+91 86884 2968</a>
       <a class="btn primary" href="#reserve">Reserve</a>
       <button class="burger" id="mobileMenuBtn" aria-label="Toggle menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
@@ -1558,7 +1558,7 @@ footer {
       <p style="color:#65594d;max-width:48ch">No account. No unnecessary checkout. Collect the details and hand the customer directly to WhatsApp or phone confirmation.</p>
     </div>
     <div class="panel reveal">
-      <form id="reserveForm">
+      <form id="reserveForm" onsubmit="event.preventDefault();">
         <div class="fields">
           <div class="field"><label>Name</label><input id="rName" required autocomplete="name" placeholder="Your name"></div>
           <div class="field"><label>Phone</label><input id="rPhone" required autocomplete="tel" inputmode="tel" placeholder="10-digit mobile"></div>
@@ -1587,8 +1587,8 @@ footer {
       <div class="visit-list reveal">
         <div class="visit-row"><div class="visit-icon">⌖</div><div><small>Address</small><strong id="address">Ground Floor, Road No. 12, Banjara Hills, Hyderabad</strong></div></div>
         <div class="visit-row"><div class="visit-icon">◷</div><div><small>Opening hours</small><strong id="hours">Mon–Thu 11:30 AM–11 PM · Fri–Sun 11 AM–11:30 PM</strong></div></div>
-        <div class="visit-row"><div class="visit-icon">☎</div><div><small>Call</small><a id="visitPhone" href="#">+91 86884 2968</a></div></div>
-        <div class="visit-row"><div class="visit-icon">◉</div><div><small>WhatsApp</small><a href="#" data-wa="general">Message the restaurant</a></div></div>
+        <div class="visit-row"><div class="visit-icon">☎</div><div><small>Call</small><a id="visitPhone" href="javascript:void(0)">+91 86884 2968</a></div></div>
+        <div class="visit-row"><div class="visit-icon">◉</div><div><small>WhatsApp</small><a href="javascript:void(0)" data-wa="general">Message the restaurant</a></div></div>
         <div class="form-actions"><a class="btn primary" id="directions" target="_blank" rel="noopener">Get Directions</a></div>
       </div>
       <div class="map reveal"><iframe id="map" title="Restaurant location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
@@ -1623,14 +1623,14 @@ footer {
         <p style="margin-top:16px;max-width:360px">A premium, conversion-focused restaurant web experience built for search, mobile customers and direct enquiries.</p>
       </div>
       <div class="footer-col"><h4>Explore</h4><a href="#menu">Menu</a><a href="#gallery">Gallery</a><a href="#reviews">Reviews</a><a href="#reserve">Reservations</a></div>
-      <div class="footer-col"><h4>Contact</h4><a id="footerPhone" href="#">+91 86884 2968</a><a href="#" data-wa="general">WhatsApp</a><a id="footerDirections" target="_blank" rel="noopener">Directions</a></div>
+      <div class="footer-col"><h4>Contact</h4><a id="footerPhone" href="javascript:void(0)">+91 86884 2968</a><a href="javascript:void(0)" data-wa="general">WhatsApp</a><a id="footerDirections" target="_blank" rel="noopener">Directions</a></div>
     </div>
   </div>
 </footer>
 
 <div class="mobile-bar">
-  <a href="#" data-call>☎<br>Call</a>
-  <a href="#" data-wa="reserve">◉<br>WhatsApp</a>
+  <a href="javascript:void(0)" data-call>☎<br>Call</a>
+  <a href="javascript:void(0)" data-wa="reserve">◉<br>WhatsApp</a>
   <a id="mobileDirections" target="_blank" rel="noopener">⌖<br>Directions</a>
 </div>
 
@@ -1645,7 +1645,7 @@ footer {
     <button data-intent="reserve">Reserve</button>
     <button data-intent="location">Location</button>
   </div>
-  <form class="chat-form" id="chatForm">
+  <form class="chat-form" id="chatForm" onsubmit="event.preventDefault();">
       <input id="chatInput" placeholder="Ask a question…" autocomplete="off">
       <button class="btn primary" style="min-height:44px;padding:0 16px;border-radius:999px;">Send</button>
   </form>
